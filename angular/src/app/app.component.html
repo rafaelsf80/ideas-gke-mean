@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <!-- <div class="row">
+    <div class="col-12">
+      <h3 underline>Aplicación para la gestión de Ideas</h3>
+    </div>
+  </div> -->
+  <div class="row mt-5">
+    <div class="col-12 offset-1">
+
+      <router-outlet></router-outlet>
+      <p></p>
+      <p></p>
+      <h1>Lista de ideas</h1>
+      <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Título</th>
+                <th>Descripcion</th>
+                <th>Estado</th>
+                <th>Tags</th>
+                <th>Acciones</th>   
+            </tr>
+        </thead>
+        <tbody>
+            <tr 
+                *ngFor="let inic of arrIniciativas; let par = even; let impar = odd">
+                <td>{{inic.fecha}}</td>
+                <td>{{inic.titulo}}</td>
+                <td>{{inic.descripcion}}</td>
+                <td>{{inic.estado}}</td>
+                <td>{{inic.tags}}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm">Ver</button>
+                    <button class="btn btn-success btn-sm">Editar</button>
+                    <button class="btn btn-success btn-danger btn-sm">Borrar</button>
+                </td>
+            </tr>
+        </tbody>
+      </table>   
+      <p></p>
+      <button class="btn btn-block btn-outline-info" (click)="open()">Proponer nueva idea</button>
+    </div>
+  </div>
+</div>

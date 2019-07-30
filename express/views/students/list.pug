@@ -1,0 +1,27 @@
+extends ../layout.pug
+
+block content
+    h2.label Lista de Estudiantes
+    table.table.table-striped.table-hover
+        thead 
+            tr  
+                th Nombre
+                th Apellidos   
+                th DNI
+                th Edad
+                th Activo
+                th Acciones
+        tbody
+            each pers in estudiantes
+                tr
+                    td= pers.nombre
+                    td= pers.apellidos
+                    td= pers.dni
+                    td= pers.edad
+                    td= pers.activo
+                    td 
+                        //input.btn.btn-primary.btn-block(onclick="/students/"+pers.__id), value="Enviar")
+                        a.btn.btn-primary.btn-sm(href="/students/"+pers._id) Ver
+                        a.btn.btn-primary.btn-success.btn-sm(href="/students/edit/"+pers._id) Edit
+                        a.btn.btn-primary.btn-danger.btn-sm(href="/students/delete/"+pers._id, onclick="return confirm('¿Estás seguro?')") Borrar
+

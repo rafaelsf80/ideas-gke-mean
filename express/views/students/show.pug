@@ -1,0 +1,19 @@
+extends ../layout.pug
+
+block content
+    h2.label Estudiante 
+    table.table.table-striped.table-hover
+        thead 
+            tr  
+                th Detalles
+        tbody
+            tr
+                td= estudiante.nombre
+            tr
+                td= estudiante.apellidos
+            tr
+                td= estudiante.dni
+            tr
+                td= estudiante.edad
+            tr
+                td= estudiante.activo
