@@ -30,3 +30,4 @@ export class UsuariosService {
     // Abreviado: return ESCRITORES.find(item => item.id == id)
   }
 }
+

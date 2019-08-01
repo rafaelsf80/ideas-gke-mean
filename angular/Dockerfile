@@ -1,7 +1,13 @@
-FROM node:12
-WORKDIR  /app
-COPY ./ /app/
+FROM node:12 AS builder
+
+WORKDIR /app
+
+COPY package.json .
 RUN npm install
-EXPOSE 4200
-ENTRYPOINT npm start
-CMD ng serve --host 34.76.37.131
+
+COPY . .
+RUN npm run build
+
+FROM nginx:alpine
+
+COPY --from=builder /app/dist/Ideas/* /usr/share/nginx/html/

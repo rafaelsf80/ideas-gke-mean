@@ -1,12 +1,14 @@
 <app-navbar></app-navbar>
-<div class="container-fluid">
+<!-- <div class="container-fluid"> -->
+  <div class="container">
   <!-- <div class="row">
     <div class="col-12">
       <h3 underline>Aplicación para la gestión de Ideas</h3>
     </div>
   </div> -->
   <div class="row mt-5">
-    <div class="col-12 offset-1">
+    <!-- <div class="col-12 offset-1"> -->
+      <div class="col-12">
 
       <router-outlet></router-outlet>
       <p></p>
@@ -26,21 +28,22 @@
         <tbody>
             <tr 
                 *ngFor="let inic of arrIniciativas; let par = even; let impar = odd">
-                <td>{{inic.fecha}}</td>
+                <td>{{inic.fecha | date:'d/M/y HH:mm'}}</td>
                 <td>{{inic.titulo}}</td>
                 <td>{{inic.descripcion}}</td>
                 <td>{{inic.estado}}</td>
                 <td>{{inic.tags}}</td>
                 <td>
                     <button class="btn btn-primary btn-sm">Ver</button>
-                    <button class="btn btn-success btn-sm">Editar</button>
-                    <button class="btn btn-success btn-danger btn-sm">Borrar</button>
+                    <!-- <button [routerLink]="['/edit', inic._id]"  class="btn btn-sm btn-success">Editar</button> -->
+                    <button (click)="editarIniciativaModal(inic)" class="btn btn-sm btn-success">Edit</button>
+                    <button (click)="eliminarIniciativa(inic)" class="btn btn-sm btn-danger">Borrar</button>
                 </td>
             </tr>
         </tbody>
       </table>   
       <p></p>
-      <button class="btn btn-block btn-outline-info" (click)="open()">Proponer nueva idea</button>
+      <button class="btn btn-block btn-outline-info" (click)="nuevaIniciativaModal()">Proponer nueva idea</button>
     </div>
   </div>
 </div>

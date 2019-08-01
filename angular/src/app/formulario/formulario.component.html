@@ -5,40 +5,40 @@
       </div>
     </div>
 
-<form [formGroup]="formulario" (ngSubmit)="crearPersona()">
-    <div class="form-group">
-        <label>Titulo</label>
-        <input type="text" class="form-control" formControlName="titulo">
-    </div>
-    <div class="error" *ngIf="formulario.controls.titulo.errors?.required && 
-    formulario.controls.titulo.touched ">
-        El campo Titulo es requerido
-    </div>
+    <form [formGroup]="formulario" (ngSubmit)="crearIniciativa()">
+        <div class="form-group">
+            <label>Titulo</label>
+            <input type="text" class="form-control" formControlName="titulo">
+        </div>
+        <div class="error" *ngIf="formulario.controls.titulo.errors?.required && 
+        formulario.controls.titulo.touched ">
+            El campo Titulo es requerido
+        </div>
 
-    <div class="error" *ngIf="formulario.controls.titulo.errors?.minlength && 
-    formulario.controls.titulo.touched">
-        El campo Titulo debe tener un mínimo de {{formulario.controls.titulo.errors.minlength.requiredLength}} caracteres.
-        Tú has escrito {{formulario.controls.titulo.errors.minlength.actualLength}} caracter(es).
-    </div>
-    <div>
-        <p>Valid: {{ formulario.controls['titulo'].valid }}</p>
-        <p>Errors - {{ formulario.controls['titulo'].errors | json }}</p>
-    </div>
+        <div class="error" *ngIf="formulario.controls.titulo.errors?.minlength && 
+        formulario.controls.titulo.touched">
+            El campo Titulo debe tener un mínimo de {{formulario.controls.titulo.errors.minlength.requiredLength}} caracteres.
+            Tú has escrito {{formulario.controls.titulo.errors.minlength.actualLength}} caracter(es).
+        </div>
+        <div>
+            <p>Valid: {{ formulario.controls['titulo'].valid }}</p>
+            <p>Errors - {{ formulario.controls['titulo'].errors | json }}</p>
+        </div>
 
-    <div class="form-group">
-        <label>Descripcion</label>
-        <input type="text" class="form-control" formControlName="descripcion">
-    </div>
-    <div class="form-group">
-        <label>Adjuntos</label>
-        <input type="text" class="form-control" formControlName="adjuntos">
-    </div>
-    <div class="form-group">
-        <label>Tags</label>
-        <input type="text" class="form-control" formControlName="tags">
-    </div>
-    <input type="submit" [disabled]="!formulario.valid" value="Enviar" class="btn btn-block btn-success">
-</form>
+        <div class="form-group">
+            <label>Descripcion</label>
+            <input type="text" class="form-control" formControlName="descripcion">
+        </div>
+        <div class="form-group">
+            <label>Adjuntos</label>
+            <input type="text" class="form-control" formControlName="adjuntos">
+        </div>
+        <div class="form-group">
+            <label>Tags</label>
+            <input type="text" class="form-control" formControlName="tags">
+        </div>
+        <input type="submit" [disabled]="!formulario.valid" value="Enviar" class="btn btn-block btn-success">
+    </form>
 </div>
 
 <p>Valid: {{ formulario.valid }} </p>
