@@ -1,3 +1,3 @@
 module.exports = {
-    TOKEN_SECRET: "frase super secreta"
+    TOKEN_SECRET: "1234123412341234"
 }

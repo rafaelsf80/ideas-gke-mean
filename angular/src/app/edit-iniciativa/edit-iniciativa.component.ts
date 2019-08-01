@@ -81,12 +81,6 @@ export class EditIniciativaComponent implements OnInit {
       values.estado = 'pendiente'
     values._id = this.contenido._id;
     values.fecha = this.contenido.fecha;
-   
-
-    console.log("Modificar: " + values)
-    console.log("Modificar: " + this.identificador)
-
-  
     try {
       let response = await this.iniciativaService.update(this.contenido._id, values).then(response => {
         console.log(response);

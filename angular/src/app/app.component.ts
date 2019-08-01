@@ -59,14 +59,5 @@ export class AppComponent {
       this.recuperarIniciativas();
       }
     });
-    
-    // try {
-    //   let response = await this.iniciativasService.create(this.formulario.value);
-    //   this.router.navigate(['/formulario']);
-    // } catch (err) {
-    //   this.errores = err.error;
-    //   console.log(err.error)
-    // }
-    //console.log( response )
   }
 }

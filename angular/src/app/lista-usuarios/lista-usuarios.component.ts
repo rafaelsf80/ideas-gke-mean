@@ -19,7 +19,7 @@ export class ListaUsuariosComponent implements OnInit {
     // this.escritoresService.getAllP().then((ESCRITORES) => {
     //   this.arrEscritores = ESCRITORES
     //})
-    this.arrUsuarios = await this.usuariosService.getAllP()
+    this.arrUsuarios = await this.usuariosService.getAll()
   }
 
 }

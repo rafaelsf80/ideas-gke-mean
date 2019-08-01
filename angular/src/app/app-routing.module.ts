@@ -11,9 +11,7 @@ const routes: Routes = [
   { path: 'usuarios', component: ListaUsuariosComponent }, 
   { path: 'dashboard', component: DashboardComponent},
   { path: 'edit/:identificador', component: EditIniciativaComponent}
-
   // { path: '**', redirectTo: 'principal' }
-
 ];
 
 @NgModule({

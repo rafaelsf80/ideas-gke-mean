@@ -1,33 +1,21 @@
 import { Injectable } from '@angular/core';
-import { USUARIOS } from './data/usuarios.db'
-
+import { Usuario } from './models/usuario.model'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
 
-  constructor() { }
+  baseUrl: string;
 
-  getAll(): any[] { // síncrono
-    return USUARIOS;
+  constructor(private http: HttpClient) {
+    this.baseUrl = "http://localhost:3000/api/usuarios";
   }
 
-  getAllP(): Promise<any[]> {  // asíncrono
-    // let prom = new Promise((resolve, reject) => {
-    //   resolve(ESCRITORES)
-    // })
-    // return prom
-    return Promise.resolve(USUARIOS)
-  }
-
-  getById(id): any {
-    // En vez de recorrer el array, uso la función find de JS
-    let escritor = USUARIOS.find((item) => {
-      return item.id == id;
-    })
-    return escritor
-    // Abreviado: return ESCRITORES.find(item => item.id == id)
-  }
+  // GET http://localhost:3000/api/iniciativas
+  getAll(): Promise<Usuario[]> {
+    return this.http.get<Usuario[]>(this.baseUrl).toPromise()
+  } 
 }
 
