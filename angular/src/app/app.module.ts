@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditIniciativaComponent } from './edit-iniciativa/edit-iniciativa.component';
+import { VerIniciativaComponent } from './ver-iniciativa/ver-iniciativa.component';
 
 
 
@@ -23,7 +24,8 @@ import { EditIniciativaComponent } from './edit-iniciativa/edit-iniciativa.compo
     ListaUsuariosComponent,
     FormularioComponent,
     NavbarComponent,
-    EditIniciativaComponent
+    EditIniciativaComponent,
+    VerIniciativaComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { EditIniciativaComponent } from './edit-iniciativa/edit-iniciativa.compo
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
-    FormularioComponent
+    FormularioComponent,
+    VerIniciativaComponent
  ]
 })
 export class AppModule { }

@@ -1,10 +1,11 @@
-<div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h3 underline>Nueva Idea</h3>
-      </div>
-    </div>
-
+<div class="modal-header">
+    <h2 class="modal-title">Nueva iniciativa</h2>
+    <button type="button" class="close" (click)="cerrar()"  aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+    
+<div class="modal-body">
     <form [formGroup]="formulario" (ngSubmit)="crearIniciativa()">
         <div class="form-group">
             <label>Titulo</label>
@@ -15,7 +16,7 @@
             El campo Titulo es requerido
         </div>
 
-        <div class="error" *ngIf="formulario.controls.titulo.errors?.minlength && 
+        <!-- <div class="error" *ngIf="formulario.controls.titulo.errors?.minlength && 
         formulario.controls.titulo.touched">
             El campo Titulo debe tener un mínimo de {{formulario.controls.titulo.errors.minlength.requiredLength}} caracteres.
             Tú has escrito {{formulario.controls.titulo.errors.minlength.actualLength}} caracter(es).
@@ -23,7 +24,7 @@
         <div>
             <p>Valid: {{ formulario.controls['titulo'].valid }}</p>
             <p>Errors - {{ formulario.controls['titulo'].errors | json }}</p>
-        </div>
+        </div> -->
 
         <div class="form-group">
             <label>Descripcion</label>
@@ -37,11 +38,11 @@
             <label>Tags</label>
             <input type="text" class="form-control" formControlName="tags">
         </div>
-        <input type="submit" [disabled]="!formulario.valid" value="Enviar" class="btn btn-block btn-success">
+        <div class="modal-footer">
+            <input type="submit" [disabled]="!formulario.valid" value="Enviar" class="btn btn-block btn-primary">
+        </div>
     </form>
 </div>
 
-<p>Valid: {{ formulario.valid }} </p>
-<p>Pristine: {{ formulario.pristine }} </p>
-<p>Touch: {{ formulario.touched }} </p>
+
 

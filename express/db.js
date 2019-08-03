@@ -1,6 +1,6 @@
 let mongoose = require('mongoose')
 
-let mongoDBUrl = 'mongodb://104.155.95.217/aepi'
+let mongoDBUrl = 'mongodb://34.76.23.144/aepi'
 
 mongoose.connect(mongoDBUrl,  { useNewUrlParser: true })
 

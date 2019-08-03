@@ -27,7 +27,7 @@ export class FormularioComponent implements OnInit {
       ]),
       descripcion: new FormControl('', [
         Validators.required,
-        Validators.maxLength(15)
+        Validators.maxLength(100)
       ]),
       logo: new FormControl(''),
       adjuntos: new FormControl('', [
@@ -43,10 +43,6 @@ export class FormularioComponent implements OnInit {
   }
 
   ngOnInit() {
-
-   
-    //const modalRef = this.modalService.open(this);
-    //modalRef.componentInstance.title = 'About';
     let tituloControl = this.formulario.controls.titulo;
     tituloControl.valueChanges.pipe(debounceTime(400)).subscribe(value => {
       console.log(value)
@@ -63,6 +59,15 @@ export class FormularioComponent implements OnInit {
     try {
       let response = await this.iniciativasService.create(this.formulario.value);
       this.activeModal.close(this.formulario.value);
+    } catch (err) {
+      this.errores = err.error;
+      console.log(err.error)
+    }
+  }
+
+  async cerrar() {
+    try {
+      this.activeModal.close("ok");
     } catch (err) {
       this.errores = err.error;
       console.log(err.error)

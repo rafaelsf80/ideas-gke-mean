@@ -11,8 +11,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./edit-iniciativa.component.css']
 })
 
-
-
 export class EditIniciativaComponent implements OnInit {
 
   @Input() public contenido;
@@ -86,6 +84,15 @@ export class EditIniciativaComponent implements OnInit {
         console.log(response);
         this.activeModal.close(values);
       })
+    } catch (err) {
+      this.errores = err.error;
+      console.log(err.error)
+    }
+  }
+
+  async cerrar() {
+    try {
+      this.activeModal.close("ok");
     } catch (err) {
       this.errores = err.error;
       console.log(err.error)

@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h2 class="modal-title">{{contenido.titulo}}</h2>
+    <button type="button" class="close" (click)="cerrar()"  aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <h5>Descripción</h5>
+    <p>{{contenido.descripcion}}</p>
+    <hr>
+    <h5>Tags</h5>
+    <p><a href="#" role="button" class="btn btn-secondary popover-test" title="Popover tags" data-content="Popover body content (tags, to be done)">{{contenido.tags}}</a></p>
+    <hr>
+    <h5>Estado</h5>
+    <p>{{contenido.estado}}</p>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-info" (click)="cerrar()">Aceptar</button>
+</div>
+  

@@ -4,6 +4,7 @@ import { IniciativasService } from './iniciativas.service';
 import { Router } from '@angular/router';
 import { NgbModal  } from '@ng-bootstrap/ng-bootstrap';
 import { EditIniciativaComponent } from './edit-iniciativa/edit-iniciativa.component';
+import { VerIniciativaComponent } from './ver-iniciativa/ver-iniciativa.component';
 
 @Component({
   selector: 'app-root',
@@ -35,10 +36,27 @@ export class AppComponent {
     })
   }
 
+  verIniciativaModal(iniciativa) {
+    const modalRef = this.modalService.open(VerIniciativaComponent);
+    // In case I need to pass some parameters
+    modalRef.componentInstance.contenido = iniciativa;
+    modalRef.componentInstance.title = 'About verIniciativaModal';
+
+    // Wait to close the modal and update the main page
+    modalRef.result.then((result) => {
+      if (result) {
+      console.log(result);
+      this.recuperarIniciativas();
+      }
+    });
+  }
+
   editarIniciativaModal(iniciativa) {
     const modalRef = this.modalService.open(EditIniciativaComponent);
     // In case I need to pass some parameters
     modalRef.componentInstance.contenido = iniciativa;
+    modalRef.componentInstance.title = 'About editarIniciativaModal';
+
     // Wait to close the modal and update the main page
     modalRef.result.then((result) => {
       if (result) {
@@ -51,7 +69,7 @@ export class AppComponent {
   nuevaIniciativaModal() {  
     const modalRef = this.modalService.open(FormularioComponent);
     // In case I need to pass some parameters
-    modalRef.componentInstance.title = 'About';
+    modalRef.componentInstance.title = 'About nuevaIniciativaModal';
     // Wait to close the modal and update the main page
     modalRef.result.then((result) => {
       if (result) {
