@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormularioComponent } from './formulario/formulario.component';
 import { IniciativasService } from './iniciativas.service';
 import { Router } from '@angular/router';
 import { NgbModal  } from '@ng-bootstrap/ng-bootstrap';
 import { EditIniciativaComponent } from './edit-iniciativa/edit-iniciativa.component';
 import { VerIniciativaComponent } from './ver-iniciativa/ver-iniciativa.component';
+import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -13,14 +14,23 @@ import { VerIniciativaComponent } from './ver-iniciativa/ver-iniciativa.componen
 })
 export class AppComponent {
 
+  //@ViewChild('childModal', {static: false}) public activeModal: NgbModal;
+
+
   arrIniciativas: any []
   errores: any[]
 
-  constructor(private modalService: NgbModal, private router: Router, private iniciativasService: IniciativasService) {}
+  constructor(public modalService: NgbModal, private router: Router, private iniciativasService: IniciativasService) {}
 
   async ngOnInit() {
     this.errores = []
     this.recuperarIniciativas();
+  }
+
+  openLogin() {
+    console.log("openlogin");
+    //const modalRef = this.modalService.open(LoginComponent);
+
   }
 
   recuperarIniciativas() {

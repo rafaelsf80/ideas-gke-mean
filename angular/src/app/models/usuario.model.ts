@@ -3,5 +3,7 @@ export class Usuario {
     nombre: string;
     apellidos: string;
     edad: number;
-    iniciativa: string;  
+    iniciativa: string; 
+    image: string;
+    provider: string; 
 }

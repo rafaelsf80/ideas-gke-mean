@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-
 import { debounceTime } from 'rxjs/operators';
 import { IniciativasService } from '../iniciativas.service';
 import { Router } from '@angular/router';
@@ -31,7 +30,7 @@ export class FormularioComponent implements OnInit {
       ]),
       logo: new FormControl(''),
       adjuntos: new FormControl('', [
-        Validators.required,
+        //Validators.required,
       ]),
       estado: new FormControl(''),
       tags: new FormControl('', [

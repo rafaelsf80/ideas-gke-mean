@@ -11,7 +11,7 @@ export class ListaUsuariosComponent implements OnInit {
 
   arrUsuarios: any []
   
-  constructor(private usuariosService: UsuariosService ) { 
+  constructor(private usuariosService: UsuariosService) { 
   }
 
   async ngOnInit() {

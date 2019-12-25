@@ -11,6 +11,8 @@ export class IniciativasService {
 
   constructor(private http: HttpClient) {
     this.baseUrl = "http://35.205.118.92:3000/api/iniciativas";
+    this.baseUrl = "http://localhost:3000/api/iniciativas";
+
   }
 
   // GET http://localhost:3000/api/iniciativas

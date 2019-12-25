@@ -4,10 +4,12 @@ import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormularioComponent } from './formulario/formulario.component';
 import { EditIniciativaComponent } from './edit-iniciativa/edit-iniciativa.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'principal', pathMatch: 'full' },
   { path: 'formulario', component: FormularioComponent },
+  { path: 'login', component: LoginComponent},
   { path: 'usuarios', component: ListaUsuariosComponent }, 
   { path: 'dashboard', component: DashboardComponent},
   { path: 'edit/:identificador', component: EditIniciativaComponent}
