@@ -51,7 +51,7 @@ export const INICIATIVAS = [
     {
         id: 6,
         fecha: '22-06-2019',
-        titulo: 'Otro6',
+        titulo: 'Incrementar',
         descripcion: 'Descripción6',
         logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/J._K._Rowling_2010.jpg/486px-J._K._Rowling_2010.jpg',
         adjuntos: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Juan_Gomez-Jurado.jpg/220px-Juan_Gomez-Jurado.jpg',
