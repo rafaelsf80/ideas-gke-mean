@@ -50,7 +50,7 @@ export class AppComponent {
     const modalRef = this.modalService.open(VerIniciativaComponent);
     // In case I need to pass some parameters
     modalRef.componentInstance.contenido = iniciativa;
-    modalRef.componentInstance.title = 'About verIniciativaModal';
+    //modalRef.componentInstance.title = 'About verIniciativaModal';
 
     // Wait to close the modal and update the main page
     modalRef.result.then((result) => {
@@ -65,7 +65,7 @@ export class AppComponent {
     const modalRef = this.modalService.open(EditIniciativaComponent);
     // In case I need to pass some parameters
     modalRef.componentInstance.contenido = iniciativa;
-    modalRef.componentInstance.title = 'About editarIniciativaModal';
+    //modalRef.componentInstance.title = 'About editarIniciativaModal';
 
     // Wait to close the modal and update the main page
     modalRef.result.then((result) => {
@@ -79,7 +79,7 @@ export class AppComponent {
   nuevaIniciativaModal() {  
     const modalRef = this.modalService.open(FormularioComponent);
     // In case I need to pass some parameters
-    modalRef.componentInstance.title = 'About nuevaIniciativaModal';
+    //modalRef.componentInstance.title = 'About nuevaIniciativaModal';
     // Wait to close the modal and update the main page
     modalRef.result.then((result) => {
       if (result) {

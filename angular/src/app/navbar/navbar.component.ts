@@ -44,8 +44,8 @@ export class NavbarComponent implements OnInit {
     const modalRef = this.modalService.open(LoginComponent);
     console.log("login");
     // In case I need to pass some parameters
-    modalRef.componentInstance.contenido = 'contenido';
-    modalRef.componentInstance.title = 'About loginModal';
+    //modalRef.componentInstance.contenido = 'contenido';
+    //modalRef.componentInstance.title = 'About loginModal';
 
     // Wait to close the modal and update the main page
     modalRef.result.then((result) => {

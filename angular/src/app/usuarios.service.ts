@@ -13,10 +13,10 @@ export class UsuariosService {
 
   baseUrl: string;
 
-
   constructor(private http: HttpClient, public afAuth: AngularFireAuth) {
     this.baseUrl = "http://35.205.118.92:3000/api/usuarios";
     this.baseUrl = "http://localhost:3000/api/usuarios";
+    this.baseUrl = "http://details:3000/api/usuarios";
   }
 
   // GET http://localhost:3000/api/iniciativas
