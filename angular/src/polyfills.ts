@@ -14,6 +14,9 @@
  * Learn more in https://angular.io/guide/browser-support
  */
 
+import * as process from 'process';
+window['process'] = process;
+
 /***************************************************************************************************
  * BROWSER POLYFILLS
  */

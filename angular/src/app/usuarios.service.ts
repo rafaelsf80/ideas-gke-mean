@@ -5,6 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import { Subject } from 'rxjs';
+import { environment } from '../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,8 @@ export class UsuariosService {
   constructor(private http: HttpClient, public afAuth: AngularFireAuth) {
     this.baseUrl = "http://35.205.118.92:3000/api/usuarios";
     this.baseUrl = "http://localhost:3000/api/usuarios";
-    this.baseUrl = "http://details:3000/api/usuarios";
+    this.baseUrl = "http://details-service:3000/api/usuarios";
+    this.baseUrl = "http://"+environment.baseUrl+":3000/api/usuarios";
   }
 
   // GET http://localhost:3000/api/iniciativas

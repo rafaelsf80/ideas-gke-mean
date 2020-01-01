@@ -59,11 +59,14 @@ $ istioctl version
 If you have not done it, let's build and push both dockers into Container Registry:
 
 ```bash
-docker build -t gcr.io/third-pulsar-248314/ideas-express:v1 .
-gcloud docker -- push gcr.io/third-pulsar-248314/ideas-express:v1 
+docker build -t gcr.io/third-pulsar-248314/ideas-angular:v7 -t gcr.io/third-pulsar-248314/ideas-angular:latest .
+gcloud docker -- push gcr.io/third-pulsar-248314/ideas-angular:v7
 
-docker build -t gcr.io/third-pulsar-248314/ideas-express:v1 .
-gcloud docker -- push gcr.io/third-pulsar-248314/ideas-express:v1 
+docker build -t gcr.io/third-pulsar-248314/ideas-express:v6 -t gcr.io/third-pulsar-248314/ideas-express:latest .
+gcloud docker -- push gcr.io/third-pulsar-248314/ideas-express:v6 
+
+docker build  -t gcr.io/third-pulsar-248314/ideas-mongodb:v2 -t gcr.io/third-pulsar-248314/ideas-mongodb:latest .
+gcloud docker -- push gcr.io/third-pulsar-248314/ideas-mongodb:v2
 ```
 
 To execute the application, let's take a look at the main yaml file `ideas.yaml`.
@@ -85,7 +88,8 @@ kubectl get svc istio-ingressgateway -n istio-system
 
 
 
-
+Potential errors:
+1) No healthy upstream with egress gateway: destination port is not listening, destination miroservie is not properly installed.
 
 After GKE cluster is created  on a GCP project, the following will deploy the **Express container** on Google Container Registry, and then on the cluster:
 

@@ -1,8 +1,15 @@
 let mongoose = require('mongoose')
 
-let mongoDBUrl = 'mongodb://34.76.23.144/aepi'
+//let mongoDBUrl = 'mongodb://34.76.23.144/aepi'
 
-mongoose.connect(mongoDBUrl,  { useNewUrlParser: true })
+console.log("Getting process vars: " + process.env.DB_TYPE + " " + process.env.MONGO_DB_URL)
+
+var mongoDBUrl = process.env.MONGO_DB_URL
+
+if (mongoDBUrl)
+    mongoose.connect(mongoDBUrl,  { useNewUrlParser: true })
+else 
+    console.log('mongoDBUrl is null. Can not connect !!!');
 
 let connection = mongoose.connection
 connection.on('error', (error) => {
