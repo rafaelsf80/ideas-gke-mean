@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: '35.195.96.193'
+  baseUrl: '104.199.25.63'
 };
 
 /*

@@ -1,0 +1,14 @@
+∫.header{
+  text-align: center;
+  font-size: 30 px;
+  margin-bottom: 40 px;
+}
+
+.row{
+  margin-top: 10px;
+}
+
+.error{
+  color: red;
+}
+

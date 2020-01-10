@@ -1,0 +1,3 @@
+{"_id":{"$oid":"5d435839c3b9a994379249d3"},"nombre":"Juan","apellidos":"Gómez-Jurado","email":"user1@gmail.com","puntos":"5"}
+{"_id":{"$oid":"5d43584cc3b9a994379249d4"},"nombre":"Ken","apellidos":"Follet","email":"user2@gmail.com","puntos":"7"}
+{"_id":{"$oid":"5d435865c3b9a994379249d5"},"nombre":"Javier","apellidos":"Sierra","email":"user3@gmail.com","puntos":"19"}

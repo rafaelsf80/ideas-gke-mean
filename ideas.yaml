@@ -1,0 +1,152 @@
+##################################################################################################
+# MongoDB service and deployment (port 27017)
+# Careful: MongoDB should be executed BEFORE express to avoid REFUSED_CONNECT errors
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb
+  labels:
+    app: mongodb
+spec:
+  ports:
+  - port: 27017
+    name: mongo
+  selector:
+    app: mongodb
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-v3
+  labels:
+    app: mongodb
+    version: v3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb
+      version: v3
+  template:
+    metadata:
+      labels:
+        app: mongodb
+        version: v3
+    spec:
+      containers:
+      - name: mongodb 
+        image: gcr.io/third-pulsar-248314/ideas-mongodb:v5
+        imagePullPolicy: IfNotPresent
+        command:
+          - mongod
+          - "--bind_ip"
+          - "0.0.0.0"
+        ports:
+        - containerPort: 27017
+---
+##################################################################################################
+# Angular services and deployment (port 80)
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: angularpage
+  labels:
+    app: angularpage
+    service: angularpage
+spec:
+  ports:
+  - port: 80
+    name: http
+  selector:
+    app: angularpage
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ideas-angular-sa
+  labels:
+    account: angular-sa
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angularpage-v5
+  labels:
+    app: angularpage
+    version: v5
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: angularpage
+      version: v5
+  template:
+    metadata:
+      labels:
+        app: angularpage
+        version: v5
+    spec:
+      serviceAccountName: ideas-angular-sa
+      containers:
+      - name: angularpage
+        image: gcr.io/third-pulsar-248314/ideas-angular:v7
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+---
+##################################################################################################
+# Express service and deployment (port 3000)
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: details
+  labels:
+    app: details
+    service: details
+spec:
+  ports:
+  - port: 3000
+    name: http
+  selector:
+    app: details
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ideas-express-sa
+  labels:
+    account: express-sa
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: details-v5
+  labels:
+    app: details
+    version: v5
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: details
+      version: v5
+  template:
+    metadata:
+      labels:
+        app: details
+        version: v5
+    spec:
+      serviceAccountName: ideas-express-sa
+      containers:
+      - name: details
+        image: gcr.io/third-pulsar-248314/ideas-express:v6
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: MONGO_DB_URL
+            value: mongodb://mongodb:27017/aepi
+        ports:
+        - containerPort: 3000
+---

@@ -1,0 +1,8 @@
+/angular/node_modules
+/angular/npm_debug
+/angular/data
+/express/node_modules
+/express/npm_debug
+/express/config.js
+/express/db.js
+./ideas-gke-dev.code-workspace
