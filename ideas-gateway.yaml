@@ -2,48 +2,60 @@ apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: ideas-gateway
+  namespace: istio-system
 spec:
   selector:
-    istio: istio-ingressgateway # use istio default controller
+    istio: ingressgateway # use istio default controller
   servers:
   - port:
       number: 80
-      name: angular
-      protocol: TCP
-      targetPort: 80
+      name: http
+      protocol: HTTP
     hosts:
     - "*"
   - port:
       number: 3000
-      name: express
-      protocol: TCP
-      targetPort: 3000
+      name: express-http
+      protocol: HTTP
     hosts:
     - "*"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: twoports
+  name: frontend
 spec:
   hosts:
   - "*"
   gateways:
   - ideas-gateway
-  tcp:
-  - match:  
-    - port: 3000
-    route:
-    - destination:
-        host: details.default.svc.cluster.local
-        port:
-          number: 3000
-  - match: 
-    - port: 80
-    route:
-    - destination:
-        host: angularpage
-        port:
-          number: 80
-  
-
+  http:
+    - match:
+      - port: 80
+        uri:
+          exact: /
+      route:
+      - destination:
+          host: angularpage
+          port:
+            number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: backend
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - ideas-gateway
+  http:
+    - match:
+      - port: 3000
+        uri:
+          exact: /api
+      route:
+      - destination:
+          host: details
+          port:
+            number: 3000

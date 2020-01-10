@@ -1,29 +1,27 @@
 # Microservices app with Istio GKE add-on
 
-Deployment of an Angular application with an Express backend over Google Kubernetes Engine (GKE) with Istio.
-An external MongoDB database is also used, outside the Istio mesh.
+Deployment of an Angular application with an Express backend over Google Kubernetes Engine (GKE).
+An external MongoDB database is also used.
 
 The application has 2 microservices and an external MongoDB database:
 - **Front-end microservice,** based on an Angular app which exposes the front-end at port 80
 - **Back-end microservice**, based on Express which receives requests on port 3000, and connects to Mongo database
 - **Database** with MongoDB, deployed in a container.
 
-The full application is temporaly working through this URL: http://34.76.41.170/
+The full application is temporaly working through this URL: http://donevalcorp.com
 
 # GKE cluster installation
 
 1) Run the following command to create a GKE cluster with both Istio add-on and Stackdriver Monitoring enabled. The cluster is created in a single zone, with 4 nodes, that can scale up to 8 nodes. The nodes are in the default vpc network.
 
 ```
-gcloud beta container clusters create ideas-istio-gke \
-    --zone europe-west1-b --num-nodes 4 \
+gcloud beta container clusters create ideas-microservices-demo \
+    --zone europe-west1-b --num-nodes 3 \
     --machine-type "n1-standard-2" --image-type "COS" \
     --cluster-version=1.13 \
     --enable-stackdriver-kubernetes \
     --scopes "gke-default","compute-rw" \
-    --enable-autoscaling --min-nodes 4 --max-nodes 8 \
-    --enable-basic-auth \
-    --addons=Istio --istio-config=auth=MTLS_STRICT
+    --enable-autoscaling --min-nodes 4 --max-nodes 8
 ```
 
 After the cluster creation (it takes some minutes), let's configure kubectl properly
@@ -31,7 +29,7 @@ and grant permissions to the current user (this last step is required to access 
 
 ```
 export GCLOUD_PROJECT=$(gcloud config get-value project)
-gcloud container clusters get-credentials ideas-istio-gke \
+gcloud container clusters get-credentials ideas-microservices-demo \
             --zone europe-west1-b --project $GCLOUD_PROJECT
 kubectl create clusterrolebinding cluster-admin-binding \
     --clusterrole=cluster-admin \
@@ -54,13 +52,14 @@ $ curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.11 sh -
 $ istioctl version
 ```
 
+<!--
 # Cloning this directory and deploying the app into GKE
 
 If you have not done it, let's build and push both dockers into Container Registry:
 
 ```bash
-docker build -t gcr.io/third-pulsar-248314/ideas-angular:v7 -t gcr.io/third-pulsar-248314/ideas-angular:latest .
-gcloud docker -- push gcr.io/third-pulsar-248314/ideas-angular:v7
+docker build -t gcr.io/third-pulsar-248314/ideas-angular:v8 -t gcr.io/third-pulsar-248314/ideas-angular:v8 .
+gcloud docker -- push gcr.io/third-pulsar-248314/ideas-angular:v8
 
 docker build -t gcr.io/third-pulsar-248314/ideas-express:v6 -t gcr.io/third-pulsar-248314/ideas-express:latest .
 gcloud docker -- push gcr.io/third-pulsar-248314/ideas-express:v6 
@@ -81,14 +80,34 @@ Now we need an Istio gateway to make our application to be accesible from outsid
 kubectl apply -f ideas-gateway.yaml
 kubectl get svc istio-ingressgateway -n istio-system
 ```
+-->
 
 
 
-
-Potential errors:
+# Debugging
 1) No healthy upstream with egress gateway: destination port is not listening, destination miroservie is not properly installed.
 
 After GKE cluster is created  on a GCP project, the following will deploy the **Express container** on Google Container Registry, and then on the cluster:
+
+2) Useful commands for debugging pods: 
+```
+kubectl logs -f details-v5-68dbd64dbb-mq94g -c details # pod logs
+kubectl exec -it angularpage-v5-5c6669c47b-mr9dg sh  # shell into a container
+```
+
+3) Useful commands for debugging Istio:
+```
+istioctl proxy-status
+istioctl get gateways
+istioctl get virtualservices
+# Check istio ingress port listeners
+kubectl exec -t -n istio-system $(kubectl get pod -l app=istio-ingressgateway -n istio-system | grep "istio-ingressgateway" | awk '{print $1}') -- netstat -lptnu 
+
+
+```
+
+
+
 
 
 

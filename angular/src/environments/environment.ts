@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: '104.199.25.63'
+  baseUrl: 'donevalcorp.com'
 };
 
 /*
