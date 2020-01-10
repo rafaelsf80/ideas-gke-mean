@@ -13,5 +13,5 @@ build:
 deploy:
   kubectl:
     manifests:
-    - ideas-ingress.yaml
     - ideas.yaml
+    - ideas-ingress.yaml
