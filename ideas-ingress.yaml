@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: ideasingress
+  name: ideas-ingress
   annotations:
     kubernetes.io/ingress.global-static-ip-name: "ideas-frontend-ip"
   labels:

@@ -1,4 +1,4 @@
-# Microservices app with Istio GKE add-on
+# Microservices app
 
 Deployment of an Angular application with an Express backend over Google Kubernetes Engine (GKE).
 An external MongoDB database is also used.
