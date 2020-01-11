@@ -10,10 +10,7 @@ export class IniciativasService {
 
   baseUrl: string;
   constructor(private http: HttpClient) {
-    this.baseUrl = "http://35.205.118.92:3000/api/iniciativas";
-    this.baseUrl = "http://localhost:3000/api/iniciativas";
-    this.baseUrl = "http://details-service:3000/api/iniciativas";
-    this.baseUrl = "http://"+environment.baseUrl+":3000/api/iniciativas";
+    this.baseUrl = "http://"+environment.baseUrl+"/api/iniciativas";
   }
 
   // GET http://localhost:3000/api/iniciativas
@@ -45,6 +42,6 @@ export class IniciativasService {
 
   // GET http://localhost:3000/api/iniciativas
   getById(iniciativaId): Promise<Iniciativa> {
-    return this.http.get<Iniciativa>(this.baseUrl + '/' + iniciativaId).toPromise();
+    return this.http.get<Iniciativa>(this.baseUrl + '/' + iniciativaId).toPromise(); 
   }
 }

@@ -35,7 +35,7 @@ kubectl create clusterrolebinding cluster-admin-binding \
     --clusterrole=cluster-admin \
     --user=$(gcloud config get-value core/account)
 ```
-
+<!--
 To verify the installation, let's check corresponding Kubernetes pods and services are deployed using the following command:
 istio-pilot-, istio-galley-, istio-policy-, istio-telemetry-, istio-ingressgateway-, istio-sidecar-injector-, and istio-citadel-.
 ```
@@ -52,7 +52,7 @@ $ curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.11 sh -
 $ istioctl version
 ```
 
-<!--
+
 # Cloning this directory and deploying the app into GKE
 
 If you have not done it, let's build and push both dockers into Container Registry:
@@ -94,7 +94,7 @@ After GKE cluster is created  on a GCP project, the following will deploy the **
 kubectl logs -f details-v5-68dbd64dbb-mq94g -c details # pod logs
 kubectl exec -it angularpage-v5-5c6669c47b-mr9dg sh  # shell into a container
 ```
-
+<!-->
 3) Useful commands for debugging Istio:
 ```
 istioctl proxy-status
@@ -102,13 +102,7 @@ istioctl get gateways
 istioctl get virtualservices
 # Check istio ingress port listeners
 kubectl exec -t -n istio-system $(kubectl get pod -l app=istio-ingressgateway -n istio-system | grep "istio-ingressgateway" | awk '{print $1}') -- netstat -lptnu 
-
-
 ```
-
-
-
-
 
 
 ```bash
@@ -132,7 +126,7 @@ For MongoDB, the deployment as a microservice is as follows:
 ```bash
 TO BE DONE
 ```
-
+-->
 # Roadmap
 - Implement user authentication and authorization, in order to allow users to create ideas and managers to approve them
 - Implement RPC between microservices
