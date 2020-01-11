@@ -1,4 +1,4 @@
-# Microservices app
+# Microservices app with Skaffold
 
 Deployment of an Angular application with an Express backend over Google Kubernetes Engine (GKE).
 An external MongoDB database is also used.
@@ -6,13 +6,13 @@ An external MongoDB database is also used.
 The application has 2 microservices and an external MongoDB database:
 - **Front-end microservice,** based on an Angular app which exposes the front-end at port 80
 - **Back-end microservice**, based on Express which receives requests on port 3000, and connects to Mongo database
-- **Database** with MongoDB, deployed in a container.
+- **Database** with MongoDB, deployed in a virtual machine and accesible via private IP.
 
 The full application is temporaly working through this URL: http://donevalcorp.com
 
 # GKE cluster installation
 
-1) Run the following command to create a GKE cluster with both Istio add-on and Stackdriver Monitoring enabled. The cluster is created in a single zone, with 4 nodes, that can scale up to 8 nodes. The nodes are in the default vpc network.
+1) Run the following command to create a GKE cluster with Stackdriver Monitoring enabled. The cluster is created in a single zone, with 4 nodes, that can scale up to 8 nodes. The nodes are in the default vpc network.
 
 ```
 gcloud beta container clusters create ideas-microservices-demo \
@@ -34,6 +34,11 @@ gcloud container clusters get-credentials ideas-microservices-demo \
 kubectl create clusterrolebinding cluster-admin-binding \
     --clusterrole=cluster-admin \
     --user=$(gcloud config get-value core/account)
+```
+
+Finally, use `skaffold` to deploy and run. The current configuration deploys with an external static IP address defined in the Ingress object as `ideas-frontend-ip`. Wait 5-10 minutes for the Google Cloud Global Load Balancer to propagate:
+```
+skaffold run --tail
 ```
 <!--
 To verify the installation, let's check corresponding Kubernetes pods and services are deployed using the following command:
@@ -85,15 +90,15 @@ kubectl get svc istio-ingressgateway -n istio-system
 
 
 # Debugging
-1) No healthy upstream with egress gateway: destination port is not listening, destination miroservie is not properly installed.
-
-After GKE cluster is created  on a GCP project, the following will deploy the **Express container** on Google Container Registry, and then on the cluster:
+1) No healthy upstream with egress gateway: reason is that destination port is not listening, or destination microservice is not properly installed.
 
 2) Useful commands for debugging pods: 
 ```
 kubectl logs -f details-v5-68dbd64dbb-mq94g -c details # pod logs
 kubectl exec -it angularpage-v5-5c6669c47b-mr9dg sh  # shell into a container
 ```
+
+3) Javascript console to debug Angular
 <!--
 3) Useful commands for debugging Istio:
 ```

@@ -8,10 +8,13 @@ build:
     context: angular
   - image: gcr.io/third-pulsar-248314/ideas-express
     context: express
-  - image: gcr.io/third-pulsar-248314/ideas-mongodb
-    context: mongo
+#  - image: gcr.io/third-pulsar-248314/ideas-mongodb
+#    context: mongo
 deploy:
   kubectl:
     manifests:
     - ideas.yaml
     - ideas-ingress.yaml
+    #- istio-ideas.yaml
+    #- istio-ideas-ingress.yaml
+    #- istio-ideas-gateway.yaml

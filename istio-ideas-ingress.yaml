@@ -1,0 +1,11 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: istio-ideas-ingress
+  namespace: istio-system
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "ideas-frontend-ip"
+spec:
+  backend:
+    serviceName: istio-ideas-gateway
+    servicePort: 80

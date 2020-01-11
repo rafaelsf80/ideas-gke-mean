@@ -1,0 +1,93 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: istio-ideas-gateway
+  namespace: istio-system
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+  - port:
+      number: 3000
+      name: express-http
+      protocol: HTTP
+    hosts:
+    - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: frontend
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - ideas-gateway
+  http:
+    - match:
+      - port: 80
+        uri:
+          exact: /
+      route:
+      - destination:
+          host: angularpage
+          port:
+            number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: backend
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - ideas-gateway
+  http:
+    - match:
+      - port: 3000
+        uri:
+          exact: /api
+      route:
+      - destination:
+          host: details
+          port:
+            number: 3000
+---
+##################################################################################################
+# This Virtual Service allows the cluster to respond to load-balancing health check 
+# requests by forwarding the requests to the status endpoint on the Istio ingress gateway
+##################################################################################################
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: health
+  namespace: default
+spec:
+  gateways:
+  - ideas-gateway
+  hosts:
+  - "*"
+  http:
+  - match:
+    - headers:
+        user-agent:
+          prefix: GoogleHC
+      method:
+        exact: GET
+      uri:
+        exact: /
+    rewrite:
+      authority: istio-ingressgateway.istio-system.svc.cluster.local:15020
+      uri: /healthz/ready
+    route:
+    - destination:
+        host: istio-ingressgateway.istio-system.svc.cluster.local
+        port:
+          number: 15020

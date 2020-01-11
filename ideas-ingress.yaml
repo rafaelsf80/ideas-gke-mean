@@ -4,10 +4,6 @@ metadata:
   name: ideas-ingress
   annotations:
     kubernetes.io/ingress.global-static-ip-name: "ideas-frontend-ip"
-#spec:
-#  backend:
-#    serviceName: ideas-backend
-#    servicePort: 80
 spec:
     rules:
     - http:
