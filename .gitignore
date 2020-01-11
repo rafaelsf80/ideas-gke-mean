@@ -7,3 +7,4 @@
 /express/db.js
 ideas-gke-dev.code-workspace
 istio-1.1.11/
+angular/src/app/environments/environment.ts

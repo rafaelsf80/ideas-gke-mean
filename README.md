@@ -94,7 +94,7 @@ After GKE cluster is created  on a GCP project, the following will deploy the **
 kubectl logs -f details-v5-68dbd64dbb-mq94g -c details # pod logs
 kubectl exec -it angularpage-v5-5c6669c47b-mr9dg sh  # shell into a container
 ```
-<!-->
+<!--
 3) Useful commands for debugging Istio:
 ```
 istioctl proxy-status
